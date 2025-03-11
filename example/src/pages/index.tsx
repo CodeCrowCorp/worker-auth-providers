@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Redirect } from "react-router-dom";
 import { FaSpotify } from '@react-icons/all-files/fa/FaSpotify'
 import { FaDiscord } from '@react-icons/all-files/fa/FaDiscord'
+import { FaLinkedin } from '@react-icons/all-files/fa/FaLinkedin'
 import { AiFillGithub } from '@react-icons/all-files/ai/AiFillGithub'
 import { AiOutlineGoogle } from '@react-icons/all-files/ai/AiOutlineGoogle'
 import { useAuth } from '../providers/AuthProvider'
@@ -69,6 +70,14 @@ export default function Home({ message }: any) {
           title="Template"
         >
           <FaDiscord />
+        </a>
+        <a
+          className="icon-btn"
+          rel="noreferrer"
+          href="/api/v1/auth/linkedin/redirect"
+          title="LinkedIn Login"
+        >
+          <FaLinkedin />
         </a>
       </nav>
     </div>
