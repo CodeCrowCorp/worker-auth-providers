@@ -52,66 +52,82 @@ export async function getUser(
 		const headers = {
 			Authorization: `Bearer ${token}`,
 			"cache-control": "no-cache",
-			"X-Restli-Protocol-Version": "2.0.0",
 			"User-Agent": userAgent,
 		};
 
 		logger.log(`[user getUser headers], ${JSON.stringify(headers)}`, "info");
 
-		// Get basic profile information
+		// Get user info from OpenID Connect userinfo endpoint
 		const getUserResponse = await fetch(
-			"https://api.linkedin.com/v2/me?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams))",
+			"https://api.linkedin.com/v2/userinfo",
 			{
 				method: "GET",
 				headers,
 			}
 		);
 
-		const userData: Linkedin.UserResponse = await getUserResponse.json();
-		logger.log(`[provider user data], ${JSON.stringify(userData)}`, "info");
-
-		// Get email address in a separate request
-		const getEmailResponse = await fetch(
-			"https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))",
-			{
-				method: "GET",
-				headers,
-			}
-		);
-
-		const emailData: Linkedin.EmailResponse = await getEmailResponse.json();
-		logger.log(`[provider email data], ${JSON.stringify(emailData)}`, "info");
-
-		// Extract email if available
-		if (emailData && emailData.elements && emailData.elements.length > 0) {
-			userData.email = emailData.elements[0]["handle~"]?.emailAddress;
+		if (!getUserResponse.ok) {
+			const errorData: any = await getUserResponse.json();
+			logger.log(
+				`[provider user error], ${JSON.stringify(errorData)}`,
+				"error"
+			);
+			// Create a properly typed error response
+			return {
+				id: "error",
+				firstName: {
+					localized: { en_US: "" },
+					preferredLocale: { country: "US", language: "en" },
+				},
+				lastName: {
+					localized: { en_US: "" },
+					preferredLocale: { country: "US", language: "en" },
+				},
+				status: errorData.status,
+				serviceErrorCode: errorData.serviceErrorCode,
+				code: errorData.code,
+				message: errorData.message || "LinkedIn API error",
+				simplified: {
+					id: "error",
+					firstName: "",
+					lastName: "",
+					fullName: "",
+					profilePicture: null,
+				},
+			};
 		}
 
-		// Create a simplified user object for easier consumption
-		userData.simplified = {
-			id: userData.id,
-			firstName:
-				userData.firstName?.localized[
-					Object.keys(userData.firstName.localized)[0]
-				] || "",
-			lastName:
-				userData.lastName?.localized[
-					Object.keys(userData.lastName.localized)[0]
-				] || "",
+		const userData: any = await getUserResponse.json();
+		logger.log(`[provider user data], ${JSON.stringify(userData)}`, "info");
+
+		// Convert OpenID Connect response to match our UserResponse type
+		const userResponse: Linkedin.UserResponse = {
+			id: userData.sub,
+			firstName: {
+				localized: { en_US: userData.given_name || "" },
+				preferredLocale: { country: "US", language: "en" },
+			},
+			lastName: {
+				localized: { en_US: userData.family_name || "" },
+				preferredLocale: { country: "US", language: "en" },
+			},
 			email: userData.email,
-			fullName: `${
-				userData.firstName?.localized[
-					Object.keys(userData.firstName.localized)[0]
-				] || ""
-			} ${
-				userData.lastName?.localized[
-					Object.keys(userData.lastName.localized)[0]
-				] || ""
-			}`.trim(),
-			profilePicture: userData.profilePicture?.displayImage || null,
+			profilePicture: userData.picture
+				? { displayImage: userData.picture }
+				: undefined,
+			simplified: {
+				id: userData.sub,
+				firstName: userData.given_name || "",
+				lastName: userData.family_name || "",
+				email: userData.email,
+				fullName:
+					userData.name ||
+					`${userData.given_name || ""} ${userData.family_name || ""}`.trim(),
+				profilePicture: userData.picture || null,
+			},
 		};
 
-		return userData;
+		return userResponse;
 	} catch (e: any) {
 		logger.log(`[error], ${JSON.stringify(e.stack)}`, "error");
 		throw new ProviderGetUserError({
