@@ -1,6 +1,6 @@
 {
 	"name": "worker-auth-providers-cc",
-	"version": "0.0.13-beta.4",
+  "version": "0.0.15",
 	"type": "module",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
