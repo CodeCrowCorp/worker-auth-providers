@@ -11,4 +11,5 @@ export { default as google } from "./providers/google";
 export { default as facebook } from "./providers/facebook";
 export { default as discord } from "./providers/discord";
 export { default as spotify } from "./providers/spotify";
+export { default as linkedin } from "./providers/linkedin";
 export * from "./types";
