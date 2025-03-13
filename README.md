@@ -1,26 +1,26 @@
-<p align="center"><img src="/logo.png" alt="worker-auth-providers" width="120px"></p>
+<p align="center"><img src="/logo.png" alt="worker-auth-providers-cc" width="120px"></p>
 
-<h1 align="center">worker-auth-providers</h1>
+<h1 align="center">worker-auth-providers-cc</h1>
 
 <p align="center">
 An open-source auth providers for <a href="https://workers.cloudflare.com/">Cloudflare workers</a>
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/github/repo-size/subhendukundu/worker-auth-providers?color=%23DA631D&label=Repo%20Size" alt="Repo Size">
+<img src="https://img.shields.io/github/repo-size/subhendukundu/worker-auth-providers-cc?color=%23DA631D&label=Repo%20Size" alt="Repo Size">
 
-<img src="https://img.shields.io/github/issues/subhendukundu/worker-auth-providers?color=%23DA631D&label=Issues" alt="Issues">
+<img src="https://img.shields.io/github/issues/subhendukundu/worker-auth-providers-cc?color=%23DA631D&label=Issues" alt="Issues">
 
-<img src="https://img.shields.io/github/issues-pr/subhendukundu/worker-auth-providers?color=%23DA631D&label=Pull%20Requests" alt="Pull Requests">
+<img src="https://img.shields.io/github/issues-pr/subhendukundu/worker-auth-providers-cc?color=%23DA631D&label=Pull%20Requests" alt="Pull Requests">
 
-<img src="https://img.shields.io/github/last-commit/subhendukundu/worker-auth-providers?color=%23DA631D&label=Last%20Commit" alt="Last Commit">
+<img src="https://img.shields.io/github/last-commit/subhendukundu/worker-auth-providers-cc?color=%23DA631D&label=Last%20Commit" alt="Last Commit">
 
 </p>
-worker-auth-providers is an open-source providers to make authentication easy with workers. Very lightweight script which doesn't need a lot of dependencies. Plug it with any framework or template of workers.
+worker-auth-providers-cc is an open-source providers to make authentication easy with workers. Very lightweight script which doesn't need a lot of dependencies. Plug it with any framework or template of workers.
 
 ## 🚀 Demo
 
-[Try now](https://worker-auth-providers.coolbio.workers.dev)
+[Try now](https://worker-auth-providers-cc.coolbio.workers.dev)
 
 ## 🧐 Features
 
@@ -33,7 +33,7 @@ worker-auth-providers is an open-source providers to make authentication easy wi
 **Step 1**: Install the dependencies
 
 ```bash
-npm install worker-auth-providers
+npm install worker-auth-providers-cc
 ```
 
 **Step 2**: Import the dependencies
@@ -47,7 +47,7 @@ import {
 	discord,
 	spotify,
 	linkedin,
-} from "worker-auth-providers";
+} from "worker-auth-providers-cc";
 ```
 
 **Step 3**: Redirect users
@@ -137,7 +137,7 @@ Please adhere to this project's [code of conduct](code-of-conduct.md).
 Use cookie. Setting a cookie to indicate that they’re authorized for future requests
 
 ```javascript
-const cookieKey = "worker-auth-providers"
+const cookieKey = "worker-auth-providers-cc"
 const persistAuth = async exchange => {
     const date = new Date()  date.setDate(date.getDate() + 1)
     const headers = {
@@ -168,12 +168,12 @@ export const logout = (event) => {
 
 ## Feedback
 
-If you have any feedback, please reach out to me at subhendukundu14@gmail.com
+If you have any feedback, please reach out to me at support@codecrow.io
 
 ## ✍️ Authors
 
-- [@subhendukundu](https://www.github.com/subhendukundu)
+- [@CodeCrowCorp](https://www.github.com/CodeCrowCorp)
 
 ## 💼 License
 
-[MIT](https://github.com/subhendukundu/worker-auth-providers/blob/main/LICENSE)
+[MIT](https://github.com/CodeCrowCorp/worker-auth-providers-cc/blob/main/LICENSE)
