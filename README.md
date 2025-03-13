@@ -7,13 +7,13 @@ An open-source auth providers for <a href="https://workers.cloudflare.com/">Clou
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/github/repo-size/subhendukundu/worker-auth-providers-cc?color=%23DA631D&label=Repo%20Size" alt="Repo Size">
+<img src="https://img.shields.io/github/repo-size/CodeCrowCorp/worker-auth-providers-cc?color=%23DA631D&label=Repo%20Size" alt="Repo Size">
 
-<img src="https://img.shields.io/github/issues/subhendukundu/worker-auth-providers-cc?color=%23DA631D&label=Issues" alt="Issues">
+<img src="https://img.shields.io/github/issues/CodeCrowCorp/worker-auth-providers-cc?color=%23DA631D&label=Issues" alt="Issues">
 
-<img src="https://img.shields.io/github/issues-pr/subhendukundu/worker-auth-providers-cc?color=%23DA631D&label=Pull%20Requests" alt="Pull Requests">
+<img src="https://img.shields.io/github/issues-pr/CodeCrowCorp/worker-auth-providers-cc?color=%23DA631D&label=Pull%20Requests" alt="Pull Requests">
 
-<img src="https://img.shields.io/github/last-commit/subhendukundu/worker-auth-providers-cc?color=%23DA631D&label=Last%20Commit" alt="Last Commit">
+<img src="https://img.shields.io/github/last-commit/CodeCrowCorp/worker-auth-providers-cc?color=%23DA631D&label=Last%20Commit" alt="Last Commit">
 
 </p>
 worker-auth-providers-cc is an open-source providers to make authentication easy with workers. Very lightweight script which doesn't need a lot of dependencies. Plug it with any framework or template of workers.
